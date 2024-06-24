@@ -2,7 +2,9 @@
 #include "SVM.h"
 #include <iostream>
 #include <vector>
-
+//! for running
+//? first => g++ -std=c++11 -o main main.cpp Packets.cpp SVM.cpp
+//? then => ./main
 int main()
 {
     std::vector<Packet> packets = initializePackets();
