@@ -1,35 +1,26 @@
 #include "Packets.h"
 #include "SVM.h"
 #include <iostream>
-#include <matplotlibcpp.h>
-
-namespace plt = matplotlibcpp;
 
 void visualizeData(const std::vector<Packet> &packets)
 {
-    std::vector<double> periodic_sizes, periodic_times, aperiodic_sizes, aperiodic_times;
+    int periodic_count = 0;
+    int aperiodic_count = 0;
 
     for (const auto &packet : packets)
     {
         if (packet.is_periodic)
         {
-            periodic_sizes.push_back(packet.size);
-            periodic_times.push_back(packet.arrival_time);
+            periodic_count++;
         }
         else
         {
-            aperiodic_sizes.push_back(packet.size);
-            aperiodic_times.push_back(packet.arrival_time);
+            aperiodic_count++;
         }
     }
 
-    plt::scatter(periodic_sizes, periodic_times, 10, {{"color", "blue"}, {"label", "Periodic"}});
-    plt::scatter(aperiodic_sizes, aperiodic_times, 10, {{"color", "red"}, {"label", "Aperiodic"}});
-
-    plt::xlabel("Packet Size");
-    plt::ylabel("Arrival Time");
-    plt::legend();
-    plt::show();
+    std::cout << "Periodic packets: " << std::string(periodic_count, '*') << " (" << periodic_count << ")\n";
+    std::cout << "Aperiodic packets: " << std::string(aperiodic_count, '*') << " (" << aperiodic_count << ")\n";
 }
 
 int main()
