@@ -1,5 +1,6 @@
 #include "Packets.h"
 #include <vector>
+
 std::vector<Packet> initializePackets()
 {
     std::vector<Packet> DataPackets;

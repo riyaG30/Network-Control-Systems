@@ -27,7 +27,7 @@ void SVM::normalizeFeatures(std::vector<double> &features) const
 
 void SVM::train(const std::vector<Packet> &packets)
 {
-    // Find max values for normalization
+
     for (const auto &packet : packets)
     {
         if (packet.size > max_size)
@@ -81,14 +81,6 @@ void SVM::train(const std::vector<Packet> &packets)
             }
         }
     }
-
-    // Print the final weights and bias
-    std::cout << "Trained weights: ";
-    for (const auto &weight : weights)
-    {
-        std::cout << weight << " ";
-    }
-    std::cout << "\nTrained bias: " << bias << std::endl;
 }
 
 bool SVM::predict(const Packet &packet) const
@@ -100,14 +92,6 @@ bool SVM::predict(const Packet &packet) const
     {
         linear_output += weights[i] * features[i];
     }
-
-    // Print the feature values and linear output for the test packet
-    std::cout << "Features: ";
-    for (const auto &feature : features)
-    {
-        std::cout << feature << " ";
-    }
-    std::cout << "\nLinear output: " << linear_output << std::endl;
 
     return linear_output >= 0;
 }
